@@ -1,0 +1,14 @@
+version: "2"
+services:
+  mongo:
+    image: mongo:3.4
+    volumes: 
+      - ./data:/data/db
+  theserver:
+    image: aws-test-server:1.0
+    links:
+      - mongo
+    environment:
+      - MONGO_HOST=mongo
+    ports:
+      - "5002:5002"
